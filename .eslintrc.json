@@ -8,8 +8,7 @@
     "@nuxtjs/eslint-config-typescript",
     "plugin:nuxt/recommended",
     "plugin:import/recommended",
-    "plugin:import/typescript",
-    "plugin:vue/recommended"
+    "plugin:import/typescript"
   ],
   "plugins": [
     "unicorn",
