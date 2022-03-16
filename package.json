@@ -1,7 +1,7 @@
 {
   "name": "nuxt-exercise-perf",
   "version": "1.0.0",
-  "description": "",
+  "description": "Simple Vue problem using nuxt for server",
   "author": "akaSECTION",
   "private": true,
   "scripts": {
