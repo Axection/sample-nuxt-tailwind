@@ -1,0 +1,333 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:vue/recommended"
+  ],
+  "plugins": [
+    "unicorn",
+    "import-helpers",
+    "vue",
+    "@babel",
+    "sort-keys-fix",
+    "promise"
+  ],
+  "settings": {
+    "import/parser": "vue-eslint-parser",
+    "import/resolver": {
+      "node": {
+        "paths": ["*"],
+        "extensions": [".js", "ts", ".vue"]
+      },
+      "typescript": {
+        "alwaysTryTypes": true
+      }
+    }
+  },
+  "rules": {
+    /**********************/
+    /* General Code Rules */
+    /**********************/
+    //
+    "endOfLine": "off",
+    // Allow paren-less arrow functions only when there's no braces
+    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": false }],
+
+    // Allow async-await
+    "generator-star-spacing": "off",
+
+    // Allow debugger during development
+    "no-debugger": "warn",
+    "no-console": "warn",
+
+    // No async function without await
+    "require-await": "error",
+
+    // No use of Var
+    "no-var": "error",
+
+    // Force object shorthand where possible
+    "object-shorthand": "error",
+
+    // No useless destructuring/importing/exporting renames
+    "no-useless-rename": "error",
+    "prefer-object-spread": "warn",
+    // 'sort-keys-fix/sort-keys-fix': 'warn',
+
+    // Warn use of Object.prototypes builtins directly
+    "no-prototype-builtins": "warn",
+
+    // Allow throw error in vuex store actions
+    "no-useless-catch": "off",
+
+    // Prevent dangerous operators mixed in one statement/expression
+    "no-mixed-operators": "warn",
+
+    // Force dot notation when possible
+    "dot-notation": "warn",
+
+    // Spacing and comma to be consistent
+    "block-spacing": ["warn"],
+    "space-in-parens": ["warn"],
+    "comma-style": ["warn", "last"],
+    "key-spacing": ["warn"],
+
+    // No underscore at the end of line
+    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+
+    /*************************/
+    /*   Typescript Rules    */
+    /*************************/
+
+    // Use comma for interface/type single line, and no delimiter for multiline
+    "@typescript-eslint/member-delimiter-style": [
+      "warn",
+      {
+        "multiline": {
+          "delimiter": "none" // 'none' or 'semi' or 'comma'
+          // 'requireLast': true
+        },
+        "singleline": {
+          "delimiter": "semi", // 'semi' or 'comma' (dont use 'comma', because it conflicts with prettier rule)
+          "requireLast": false
+        }
+      }
+    ],
+
+    // Prevent using semi-colon ';' in the end of line
+    "semi": "off",
+    "@typescript-eslint/semi": ["warn", "always"],
+
+    // Requires comma for multiline statements
+    "comma-dangle": "off",
+    "@typescript-eslint/comma-dangle": ["warn", "only-multiline"],
+
+    // Use space after comma
+    "comma-spacing": "off",
+    "@typescript-eslint/comma-spacing": ["warn"],
+
+    // Enforce Case Convention for Variables, parameters, types/interfaces, and methods/properties
+    // Special for private methods, use _camelCase
+    "camelcase": "off",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variableLike",
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase", "UPPER_CASE", "PascalCase"]
+      },
+      {
+        "selector": "memberLike",
+        "modifiers": ["private"],
+        "format": ["camelCase"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "parameter",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      }
+    ],
+
+    // Add spaces between object curlies: { object: 'name' }
+    "object-curly-spacing": "off",
+    "@typescript-eslint/object-curly-spacing": ["warn", "always"],
+
+    // Enforce strings to use single-quote
+    "quotes": "off",
+    "@typescript-eslint/quotes": [
+      "error",
+      "double",
+      { "allowTemplateLiterals": true }
+    ],
+
+    // Enforce additional space after arrow function, never for named
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+
+    // Already handed by @typescript-eslint/no-unused-vars
+    "no-unused-vars": "off",
+
+    // Experssions must be consumed and no expression as statements
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "error",
+
+    // No need to have space between function execution
+    "func-call-spacing": "off",
+    "@typescript-eslint/func-call-spacing": ["warn", "never"],
+
+    // Spacing between operators
+    "space-infix-ops": "off",
+    "@typescript-eslint/space-infix-ops": ["warn", { "int32Hint": false }],
+
+    /**********************/
+    /*   Unicorn Rules    */
+    /**********************/
+
+    // Pass error message when throwing errors
+    "unicorn/error-message": "error",
+
+    // Uppercase regex escapes
+    "unicorn/escape-case": "error",
+
+    // Array.isArray instead of instanceof
+    "unicorn/no-array-instanceof": "error",
+
+    // Prevent deprecated `new Buffer()`
+    "unicorn/no-new-buffer": "error",
+
+    // Keep regex literals safe!
+    "unicorn/no-unsafe-regex": "warn",
+
+    // Lowercase number formatting for octal, hex, binary (0x12 instead of 0X12)
+    "unicorn/number-literal-case": "error",
+
+    // ** instead of Math.pow()
+    "unicorn/prefer-exponentiation-operator": "error",
+
+    // includes over indexOf when checking for existence
+    "unicorn/prefer-includes": "error",
+
+    // String methods startsWith/endsWith instead of more complicated stuff
+    "unicorn/prefer-starts-ends-with": "error",
+
+    // textContent instead of innerText
+    "unicorn/prefer-text-content": "error",
+
+    // Enforce throwing type error when throwing error while checking typeof
+    "unicorn/prefer-type-error": "error",
+
+    // Use new when throwing error
+    "unicorn/throw-new-error": "error",
+    "unicorn/filename-case": [
+      "error",
+      { "case": "kebabCase", "ignore": [".vue", ".test.js", ".test.ts"] }
+    ],
+    "unicorn/explicit-length-check": "error",
+    "unicorn/better-regex": "error",
+    "unicorn/catch-error-name": [
+      "error",
+      {
+        "name": "error"
+      }
+    ],
+    "unicorn/prefer-modern-dom-apis": "error",
+    "unicorn/prefer-negative-index": "error",
+    "unicorn/prefer-number-properties": "error",
+    "unicorn/prefer-query-selector": "error",
+    "unicorn/prefer-replace-all": "off",
+    "unicorn/prefer-spread": "error",
+    "unicorn/prefer-string-slice": "error",
+    "unicorn/prevent-abbreviations": "off",
+    "unicorn/no-fn-reference-in-iterator": "error",
+    "unicorn/no-for-loop": "error",
+    "unicorn/no-unused-properties": "error",
+
+    /**********************/
+    /*     Nuxt Rules      */
+    /**********************/
+
+    // Globals in created may leads to SSR issue
+    "nuxt/no-globals-in-created": "warn",
+    "nuxt/no-env-in-hooks": "off",
+
+    /**********************/
+    /*     Vue Rules      */
+    /**********************/
+
+    // Disable template errors regarding invalid end tags
+    "vue/no-parsing-error": [
+      "error",
+      {
+        "x-invalid-end-tag": false
+      }
+    ],
+
+    // Maximum 5 attributes per line instead of one
+    "vue/max-attributes-per-line": "off",
+
+    // Define a style for the component name in template casing for consistency purposes
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case",
+      {
+        "registeredComponentsOnly": false
+      }
+    ],
+
+    "vue/padding-line-between-blocks": "error",
+    "vue/static-class-names-order": "off",
+    "vue/array-bracket-spacing": "error",
+    "vue/eqeqeq": "error",
+    "vue/require-direct-export": "off",
+    "vue/v-on-function-call": "off",
+    "vue/no-restricted-syntax": "error",
+    "vue/no-reserved-component-names": "error",
+    "vue/no-irregular-whitespace": "error",
+    "vue/no-v-html": "warn",
+
+    "vue/component-tags-order": [
+      "error",
+      {
+        order: ["template", "script", "style"]
+      }
+    ],
+
+    /**********************/
+    /*     Import Rules   */
+    /**********************/
+
+    // Imports should come first
+    "import/first": "error",
+
+    // Other import rules
+    "import/no-mutable-exports": "error",
+    "import/no-named-as-default-member": "off",
+
+    "import/no-unresolved": "off",
+
+    "import/namespace": [2, { "allowComputed": true }],
+
+    /**********************/
+    /*     Import Rules   */
+    /**********************/
+
+    "promise/always-return": "off",
+    "promise/no-return-wrap": "error",
+    "promise/param-names": "error",
+    "promise/catch-or-return": "error",
+    "promise/no-native": "off",
+    "promise/no-nesting": "warn",
+    "promise/no-promise-in-callback": "warn",
+    "promise/no-callback-in-promise": "warn",
+    "promise/avoid-new": "off",
+    "promise/no-new-statics": "error",
+    "promise/no-return-in-finally": "warn",
+    "promise/valid-params": "warn"
+
+    /**********************/
+    /*        Jest        */
+    /**********************/
+  }
+};
